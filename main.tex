@@ -1,0 +1,104 @@
+%MSc template Version 1.0.2
+%this version adds version numbering, candidate number and changes referencing style
+%and corrections/comments/requests, please email alastair.kay@rhul.ac.uk
+\documentclass[11pt,twoside]{report}
+%this is a comment, and does nothing.
+
+%import useful packages here
+\usepackage{amsfonts,amssymb,amsmath}            % for math symbols.
+\usepackage{lmodern}
+\usepackage[]{graphics,graphicx}            % for graphics figures.
+\usepackage{amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm,bindingoffset=6mm]{geometry}
+\usepackage{fancyhdr}
+%\usepackage[Lenny]{fncychap}	%This is a way of doing pretty starts to chapters. I like Bjarne or Lenny as options
+\usepackage{hyperref}			%Lets you have links in your document
+\usepackage[sort&compress,numbers]{natbib}
+
+%bibliography style. helps referencing appear consistently
+\bibliographystyle{IEEEtran}
+
+%set up page stylings
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[RO,LE]{Thesis Title}
+\fancyfoot{}
+\fancyfoot[LE,RO]{\thepage}
+\fancyfoot[LO,CE]{Chapter \thechapter}
+\fancyfoot[CO,RE]{Author Name}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+%define new "supervisor", "Candidate Number" and "degree" variables
+\makeatletter
+\def\supervisor#1{\gdef\@supervisor{#1}}
+\def\@supervisor{\@latex@error{No \noexpand\supervisor given}\@ehc}
+\def\degree#1{\gdef\@degree{#1}}
+\def\@degree{\@latex@error{No \noexpand\degree given}\@ehc}
+\def\CandidateNo#1{\gdef\@CandidateNo{#1}}
+\def\@CandidateNo{\@latex@error{No \noexpand\CandidateNo given}\@ehc}
+\makeatother
+
+%if you use includegraphics command, automatically check this sub-folder for images
+\graphicspath{ {images/} }
+
+%custom theorem structures
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+
+%Document details
+\title{MSc Thesis Template}
+\author{Student }
+\CandidateNo{1700000}
+\supervisor{Supervisor}
+\degree{MSc in Information Security}
+%\degree{MSc in Mathematics for Applications}
+\date{\today}
+
+\begin{document}
+\pagenumbering{roman} 
+
+\input{titlepage}
+
+\input{abstract}
+
+\tableofcontents
+
+%in case you really want a list of figures or tables, uncomment one of the following:
+%\listoffigures
+%\listoftables
+
+%start new page, and restart page numbering
+\clearpage\pagenumbering{arabic} 
+
+%main document body. This is where you link to other files that contain your content.
+
+\chapter{Introduction}
+\input{chapters/introduction}
+
+\chapter{Chapter Two Title}
+\input{chapters/chapter02}
+
+\chapter{Chapter Three Title}
+\input{chapters/chapter03}
+
+\chapter{Chapter Four Title}
+\input{chapters/chapter04}
+
+\chapter{Conclusion}
+\input{chapters/conclusion}
+
+\appendix   %all chapters after this command will be appendices
+\chapter{Appendix Title}
+\input{chapters/appendix}
+
+%references. use bibtex file
+\bibliography{references}{}
+%\bibliographystyle{plain}
+
+
+\end{document}
